@@ -1,0 +1,280 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <style>
+        #json {
+                display: none;
+        }
+    </style>
+</head>
+<body>
+        <div class="ui container">
+        <h1>Shadowsocks二维码在线生成器</h1>
+        <div class="ui grid">
+                <!-- 左边的输入区域 -->
+                <div class="ui eight wide column">
+                        <!-- 输入方式选择区 -->
+                        <form class="ui form" name="inputmethodform">
+                                <div class="inline fields">
+                                        <label>选择输入方式:</label>
+                                                <div class="field">
+                                                        <div class="ui radio checkbox">
+                                                        <input type="radio" name="inputmethod" checked="checked" id="handtyperadio" value="0">
+                                                        <label>输入信息</label>
+                                                        </div>
+                                                </div>
+                                                <div class="field">
+                                                        <div class="ui radio checkbox">
+                                                        <input type="radio" name="inputmethod" id="jsonradio" value="1">
+                                                        <label>JSON</label>
+                                                        </div>
+                                                </div>
+                                </div>
+                        </form>
+
+                        <!-- 手动输入区 -->
+                        <div id="handtype" class="ui segment">
+                                <!-- 手动输入区.文本框 -->
+                                <form class="ui form"  id="handtypeforminputs">                        
+                                        <div class="fields">
+                                                <div class="twelve wide field">
+                                                <label>服务器地址</label>
+                                                <input type="text" name="ad">
+                                                </div>
+
+                                                <div class="four wide field">
+                                                <label>端口</label>
+                                                <input type="text" name="pt">
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <label>密码</label>
+                                                <input type="text" name="pw">
+                                        </div>
+                                </form>
+                                <!-- 手动输入区.加密方式选择区 -->
+                                <form class="ui form" id="handtypeformradios">
+                                        <div class="grouped fields">
+                                        <label>加密方式</label>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="aes-256-cfb">
+                                                        <label>aes-256-cfb</label>
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="rc4-md5">
+                                                        <label>rc4-md5</label>
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="aes-256-ofb">
+                                                        <label>aes-256-ofb</label>
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="aes-192-ofb">
+                                                        <label>aes-192-ofb</label>
+                                                </div>
+                                        </div>                                    
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="aes-192-cfb">
+                                                        <label>aes-192-cfb</label>
+                                                </div>
+                                        </div>                                    
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="aes-128-ofb">
+                                                        <label>aes-128-ofb</label>
+                                                </div>
+                                        </div>                                    
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="aes-128-cfb">
+                                                        <label>aes-128-cfb</label>
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="cast5-cfb">
+                                                        <label>cast5-cfb</label>
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="cast5-ofb">
+                                                        <label>cast5-ofb</label>
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="chacha20">
+                                                        <label>chacha20</label>
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                        <input type="radio" name="enctype" value="rc4">
+                                                        <label>rc4</label>
+                                                </div>
+                                        </div>
+                                        </div>
+                                </form>
+
+                        </div>
+
+                        <div class="ui segment" id="json">
+                            <form class="ui form" >
+                                <div class="field">
+                                        <label>JSON</label>
+                                        <textarea id="jsonform"></textarea>
+                                </div>
+                        </form>
+                        </div>
+
+                        <div class="ui segment">
+                                Contact: imyangmo@谷歌邮箱
+                        </div>
+
+            </div>
+            <div class="ui eight wide column">
+                <div class="ui segment">
+                    <div class="ui form">
+                        <div class="field">
+                                <label>原地址</label>
+                                <input type="text" readonly="readonly" id="plainurl" placeholder="ss://">
+                        </div>
+                        <div class="field">
+                                <label>BASE64编码过的地址</label>
+                                <input type="text" readonly="readonly" id="base64url" placeholder="ss://">
+                        </div>
+                        <div class="field">
+                                <label>二维码</label>
+                                <canvas id="qr"></canvas>
+                                
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="./qrious.min.js"></script>
+<script>
+        //二维码生成器
+        function qrgen(passedurl){
+                var qr = new QRious({
+                        element: document.getElementById('qr'),
+                        size:500,
+                        value: passedurl
+        });
+        }
+
+        //地址生成器
+        function urlgen(a, b, c, d){
+                urlbody = d + ":" + c + "@" + a + ":" + b;
+                console.log(a);
+                console.log(b);
+                console.log(c);
+                console.log(d);
+
+                        if (a && b && c && d !== undefined){
+                                plainurl = "ss://" + urlbody;
+                                document.getElementById('plainurl').value = plainurl;
+
+                                base64body = window.btoa(urlbody);
+                                // Base64编码会用等于号放末尾填充，先用循环来数等于号的数量
+                                var j=0;
+                                for (i=0; i<base64body.length; i++){
+                                        if (base64body[i] == "="){
+                                                j++;
+                                        };
+                                };
+
+                                base64url = "ss://" + base64body.substring(0,base64body.length-j);
+                                document.getElementById('base64url').value = base64url;
+                                qrgen(base64url);
+                        }
+                
+
+        }
+
+        //JSON解析器
+        function jsonpaser(content){
+                var jsonbody = new Object();
+                jsonbody = JSON.parse(content);
+                console.log(jsonbody["server"]);
+                urlgen(jsonbody["server"], jsonbody["server_port"], jsonbody["password"], jsonbody["method"]);
+        }
+
+        // 监听输入方式选择框
+        var rad = document.inputmethodform.inputmethod;
+        for (var i=0; i<rad.length; i++){
+                rad[i].onclick = function(){
+                if (this.value == 1){
+                        document.getElementById('handtype').style.display="none";
+                        document.getElementById('json').style.display="block";
+                }
+                else{
+                        document.getElementById('handtype').style.display="block";
+                        document.getElementById('json').style.display="none";
+                };
+                };
+        };
+
+
+        handtyperec = new Object();
+        // 监听手动输入表格.文本框
+        var handtypelistenera = document.getElementById('handtypeforminputs');
+        for (i=0; i<handtypelistenera.length; i++){
+                handtypelistenera[i].oninput = function(){
+                        // console.log(this.name);
+
+                        if (this.name == 'ad'){
+                                handtyperec.addr = this.value;
+                        }else if(this.name == 'pt'){
+                                handtyperec.port = this.value;
+                        }else if(this.name == 'pw'){
+                                handtyperec.pwd = this.value;
+                        };
+                        // console.log("Address:" + handtyperec.addr);
+                        // console.log("Port:" + handtyperec.port);
+                        // console.log("Password:" + handtyperec.pwd);
+                        // console.log("Encrption Method:" + handtyperec.encmethod);
+                        urlgen(handtyperec.addr, handtyperec.port, handtyperec.pwd, handtyperec.encmethod)
+                };
+        };
+
+        // 监听手动输入表格.加密方式
+        var handtypelistenerb = document.getElementById('handtypeformradios');
+        for (i=0; i<handtypelistenerb.length; i++){
+                handtypelistenerb[i].onchange = function(){
+                        if(this.name == 'enctype'){
+                                handtyperec.encmethod = this.value;
+                        };
+                        // console.log("Address:" + handtyperec.addr);
+                        // console.log("Port:" + handtyperec.port);
+                        // console.log("Password:" + handtyperec.pwd);
+                        // console.log("Encrption Method:" + handtyperec.encmethod);
+                        urlgen(handtyperec.addr, handtyperec.port, handtyperec.pwd, handtyperec.encmethod)
+                };
+        };
+
+        //监听JSON框
+        var jsonformgetter = document.getElementById('jsonform');
+        function jsontextfunc(){
+                jsontext = jsonformgetter.value;
+                jsonpaser(jsontext);
+        }
+        jsonformgetter.addEventListener("input",jsontextfunc, false);
+
+        //嘿嘿
+        window.onload = qrgen("wxp://f2f03Vv1K78c56Hj_6wu48wk3xezHmbkBXKp");
+</script>
+</body>
+</html>
