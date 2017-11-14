@@ -9,29 +9,28 @@
 </head>
 <body>
         <div class="ui container">
-        <h1>Shadowsocks二维码在线生成器</h1>
+        <h1 class="ui center aligned block header">Shadowsocks二维码在线生成器</h1>
+        <!-- 输入方式选择区 -->
+        <form class="ui form" name="inputmethodform">
+                        <div class="inline fields">
+                                <label>选择输入方式:</label>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                <input type="radio" name="inputmethod" checked="checked" id="handtyperadio" value="0">
+                                                <label>输入信息</label>
+                                                </div>
+                                        </div>
+                                        <div class="field">
+                                                <div class="ui radio checkbox">
+                                                <input type="radio" name="inputmethod" id="jsonradio" value="1">
+                                                <label>JSON</label>
+                                                </div>
+                                        </div>
+                        </div>
+                </form>
         <div class="ui grid">
                 <!-- 左边的输入区域 -->
                 <div class="ui eight wide column">
-                        <!-- 输入方式选择区 -->
-                        <form class="ui form" name="inputmethodform">
-                                <div class="inline fields">
-                                        <label>选择输入方式:</label>
-                                                <div class="field">
-                                                        <div class="ui radio checkbox">
-                                                        <input type="radio" name="inputmethod" checked="checked" id="handtyperadio" value="0">
-                                                        <label>输入信息</label>
-                                                        </div>
-                                                </div>
-                                                <div class="field">
-                                                        <div class="ui radio checkbox">
-                                                        <input type="radio" name="inputmethod" id="jsonradio" value="1">
-                                                        <label>JSON</label>
-                                                        </div>
-                                                </div>
-                                </div>
-                        </form>
-
                         <!-- 手动输入区 -->
                         <div id="handtype" class="ui segment">
                                 <!-- 手动输入区.文本框 -->
@@ -128,7 +127,7 @@
                         </div>
 
                         <div class="ui segment" id="json">
-                            <form class="ui form" >
+                        <form class="ui form" >
                                 <div class="field">
                                         <label>JSON</label>
                                         <textarea id="jsonform"></textarea>
@@ -139,8 +138,7 @@
                         <div class="ui segment">
                                 Contact: imyangmo@谷歌邮箱
                         </div>
-
-            </div>
+                </div>
             <div class="ui eight wide column">
                 <div class="ui segment">
                     <div class="ui form">
