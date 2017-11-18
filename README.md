@@ -1,2 +1,2 @@
 # shadowsocksqr
-一个个人的小工具
+一个个人工具网站，可以根据提供的Shadowsocks信息生成SS地址和二维码。
